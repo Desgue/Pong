@@ -1,9 +1,9 @@
 import pygame
-from .config import WINDOW_SIZE
+from .config import WINDOW_SIZE, BALL_SIZE, PADDLE_SIZE
 from math import cos,sin,radians,pi
 class Player(pygame.Rect):
     def __init__(self):
-        super(Player,self).__init__(20,225,20,100)
+        super(Player,self).__init__(20,225,PADDLE_SIZE)
         self.velocity = 5
         self.points = 0
         print("player class initated")
@@ -16,8 +16,8 @@ class Player(pygame.Rect):
     
 class Enemy(pygame.Rect):
     def __init__(self):
-        super(Enemy,self).__init__(760,225,20,100)
-        self.velocity = 2
+        super(Enemy,self).__init__(760,225,PADDLE_SIZE)
+        self.velocity = 3
         self.points = 0
         print("enemy class initated")
     def update(self,ball_y_pos):
@@ -31,7 +31,7 @@ class Enemy(pygame.Rect):
         
 class Ball(pygame.Rect):
     def __init__(self):
-        super(Ball,self).__init__(400,300,20,20)
+        super(Ball,self).__init__(400,300,BALL_SIZE)
         self.velocity = 5
         self.angle = radians(0)
         self.dir_x = cos(self.angle)
