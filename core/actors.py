@@ -3,7 +3,7 @@ from .config import WINDOW_SIZE
 from math import cos,sin,radians,pi
 class Player(pygame.Rect):
     def __init__(self):
-        super(Player,self).__init__(20,225,20,150)
+        super(Player,self).__init__(20,225,20,100)
         self.velocity = 5
         self.points = 0
         print("player class initated")
@@ -16,7 +16,7 @@ class Player(pygame.Rect):
     
 class Enemy(pygame.Rect):
     def __init__(self):
-        super(Enemy,self).__init__(760,225,20,150)
+        super(Enemy,self).__init__(760,225,20,100)
         self.velocity = 2
         self.points = 0
         print("enemy class initated")
