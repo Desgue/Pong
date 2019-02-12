@@ -62,7 +62,7 @@ class StartButton(Button):
         width,
         height,
         color,
-        text = "Start",
+        text,
         x_padding,
         y_padding)
 
