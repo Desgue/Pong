@@ -1,10 +1,10 @@
 import pygame
-from .config import WINDOW_SIZE
+from .config import WINDOW_SIZE, FONT_PATH
 
 class Button(pygame.Rect):
     def __init__(self,x, y, width, height,color, text = "Default", x_padding = 0, y_padding =0):
         super(Button, self).__init__(x, y, width, height)
-        self.font = pygame.font.SysFont("Comic Sans MS", 36)
+        self.font = pygame.font.SysFont(FONT_PATH, 36)
         self._text = text
         self._color = color
         self._xpadding = x_padding
@@ -54,9 +54,18 @@ class Button(pygame.Rect):
     def y_padding(self, new_padding):
         self._ypadding = new_padding
     
-class MenuButton(Button):
+class StartButton(Button):
     def __init__(self, x,y,width,height,color,text, x_padding, y_padding):
-        super(MenuButton, self).__init__(x,y,width,height,color,text, x_padding,y_padding)
+        super(MenuButton, self).__init__(
+        x,
+        y,
+        width,
+        height,
+        color,
+        text = "Start",
+        x_padding,
+        y_padding)
+
     def render(self,screen):
         pygame.font.init()
         text = self.font.render(self._text, True, self._color)
