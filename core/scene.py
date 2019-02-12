@@ -1,6 +1,6 @@
 from .actors import Player,Enemy,Ball
-from .config import Colors, Globals
-from .elements import Button
+from .config import WINDOW_SIZE
+from .button import Button
 import pygame
 
 class SceneManager(object):
@@ -27,16 +27,18 @@ class MenuScene(Scene):
         pygame.font.init()
         self.font = pygame.font.SysFont('Arial', 56)
         self.sfont = pygame.font.SysFont('Arial', 32)
-        
+        #self.start_btn = Button(250,200, 200,50, pygame.Color("white"))
+    def update(self):
+        pass    
     def render(self, screen):      
-        screen.fill(Colors.green)
-        self.start_btn.render(screen)
+        screen.fill(pygame.Color("green"))
+        #self.start_btn.render(screen)
         text1 = self.font.render('Pong Rework', True, (255, 255, 255))
         text2 = self.sfont.render('> press SPACE to start <', True, (255, 255, 255))
         screen.blit(text1, (200, 50))
         screen.blit(text2, (200, 350))
-    def update(self):
-        pass
+        #self.start_btn.render(screen)
+    
     def handle_events(self,events):
         for e in events:
             if e.type == pygame.KEYDOWN and (e.key == pygame.K_SPACE or e.key == pygame.K_RETURN):
@@ -54,13 +56,13 @@ class GameScene(Scene):
         self.ball = Ball()
         
     def render(self,screen):
-        self.player_score=self.font.render("{}".format(self.player.points),1,Colors.white)
-        self.enemy_score=self.font.render("{}".format(self.enemy.points),1, Colors.white)  
+        self.player_score=self.font.render("{}".format(self.player.points),1,pygame.Color("white"))
+        self.enemy_score=self.font.render("{}".format(self.enemy.points),1, pygame.Color("white"))  
         screen.blit(self.player_score,(150,100))
         screen.blit(self.enemy_score,(630,100))
-        pygame.draw.rect(screen,Colors.white,self.player)
-        pygame.draw.rect(screen,Colors.white,self.enemy)
-        pygame.draw.rect(screen,Colors.white,self.ball)
+        pygame.draw.rect(screen,pygame.Color("white"),self.player)
+        pygame.draw.rect(screen,pygame.Color("white"),self.enemy)
+        pygame.draw.rect(screen,pygame.Color("white"),self.ball)
 
     def update(self):
         pressed = pygame.key.get_pressed()
@@ -69,7 +71,7 @@ class GameScene(Scene):
         self.player.update(up,down)
         self.enemy.update(self.ball.y)
         self.ball.update(self.player,self.enemy)
-        return
+        
 
     def handle_events(self, events):
         for event in events:
@@ -80,7 +82,7 @@ class GameScene(Scene):
         if self.ball.x <= self.ball.width:
             self.enemy.points += 1
             self.ball.reset()                     
-        if self.ball.x >= (Globals.win_width + self.ball.width):
+        if self.ball.x >= (WINDOW_SIZE.width + self.ball.width):
             self.player.points += 1
             self.ball.reset()
             self.ball.dir_x *= -1  
