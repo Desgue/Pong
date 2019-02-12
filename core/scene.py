@@ -1,5 +1,5 @@
 from .actors import Player,Enemy,Ball
-from .config import WINDOW_SIZE
+from .config import WINDOW_SIZE, FONT_PATH
 from .button import Button
 import pygame
 
@@ -25,8 +25,8 @@ class MenuScene(Scene):
     def __init__(self):
         super(MenuScene,self).__init__()
         pygame.font.init()
-        self.font = pygame.font.SysFont('Arial', 56)
-        self.sfont = pygame.font.SysFont('Arial', 32)
+        self.font = pygame.font.Font(FONT_PATH,52)
+        self.sfont = pygame.font.Font(FONT_PATH, 32)
         #self.start_btn = Button(250,200, 200,50, pygame.Color("white"))
     def update(self):
         pass    
