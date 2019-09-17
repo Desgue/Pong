@@ -56,7 +56,7 @@ class Button(pygame.Rect):
     
 class StartButton(Button):
     def __init__(self, x,y,width,height,color,text, x_padding, y_padding):
-        super(MenuButton, self).__init__(
+        super(StartButton, self).__init__(
         x,
         y,
         width,
